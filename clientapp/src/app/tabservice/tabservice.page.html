@@ -1,0 +1,127 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Home - Service Provider
+    </ion-title>
+    <ion-button slot="end" (click)="logout()" color="primary">Logout</ion-button>
+    <ion-title size="small">{{email}}: {{id}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="8">
+        <ion-card class="card">
+          <img src="assets/Iota_logo.svg" width="70px" height="70px" alt="" />
+          <ion-card-header>
+            <ion-card-title>Balance  <ion-spinner id="balload" name="crescent"></ion-spinner></ion-card-title>
+            <ion-card-subtitle>Check your balance</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <b>Contabilistic: <p id="contabbalanceid">0 IOTA</p></b>
+            <b>Available: <p id="balanceid">0 IOTA</p></b>
+            <ion-row>
+              <ion-col size="4">
+                <ion-card color="primary" (click)="updateBalance()">
+                  <ion-card-content>
+                    <ion-icon slot="start" name="wallet"></ion-icon>
+                    <ion-label fill="outline">Update Balance</ion-label>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col size="4">
+                <ion-card color="primary" (click)="presentModalPrice()">
+                  <ion-card-content>
+                    <ion-icon slot="start" name="wallet"></ion-icon>
+                    <ion-label fill="outline">Update Price</ion-label>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col size="4">
+                <ion-card color="primary" (click)="updateAddress()">
+                  <ion-card-content>
+                    <ion-icon slot="start" name="wallet"></ion-icon>
+                    <ion-label fill="outline">Update Address</ion-label>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card class="card" color="light">
+          <ion-card-header>
+            <ion-card-title>Service Endpoint</ion-card-title>
+            <ion-card-subtitle>Simulate operations of service endpoints</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="8">
+                <ion-card color="primary" (click)="presentModalTicket()">
+                  <ion-card-content>
+                    <ion-icon slot="start" name="today"></ion-icon>
+                    <ion-label fill="outline">Receive Ticket</ion-label>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col size="8">
+                <ion-card color="primary" (click)="presentModalCheckoutTicket()">
+                  <ion-card-content>
+                    <ion-icon slot="start" name="today"></ion-icon>
+                    <ion-label fill="outline">Checkout Ticket</ion-label>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Inputs <ion-spinner id="inpload" name="crescent"></ion-spinner></ion-card-title>
+            <ion-card-subtitle>Addresses with tokens</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="9"><b>Address</b></ion-col>
+                <ion-col size="3"><b>Value (IOTA)</b></ion-col>
+              </ion-row>
+              <div id="inputs">
+              </div>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Transfers  <ion-spinner id="traload" name="crescent"></ion-spinner></ion-card-title>
+            <ion-card-subtitle>Completed transactions</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="3"><b>Direction</b></ion-col>
+                <ion-col size="6"><b>Address</b></ion-col>
+                <ion-col size="3"><b>Value (IOTA)</b></ion-col>
+              </ion-row>
+              <div id="transfers">
+              </div>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<script>
+  
+</script>

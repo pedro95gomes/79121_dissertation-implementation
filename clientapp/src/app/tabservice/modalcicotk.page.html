@@ -1,0 +1,53 @@
+<div class="inner-content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Checkout Ticket Modal</ion-title>
+            <ion-buttons slot="end">
+                <ion-button (click)="dismiss()">Close</ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+    <form #checkOutTicketForm="ngForm" (ngSubmit)="checkOut(checkOutTicketForm.value)">
+        <ion-list padding="true">
+            <ion-item lines="none"> 
+                <ion-label>
+                    <h2>ID:</h2>
+                </ion-label>     
+            </ion-item>
+            <ion-item>
+                <ion-textarea name="value" class="ion-text-right" [(ngModel)] = "value" placeholder="Paste your ID here..."></ion-textarea>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label>
+                    <h2>Bundle ID:</h2>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-textarea name="valueBundle" class="ion-text-right" [(ngModel)] = "valueBundle" placeholder="Paste your Bundle ID here..."></ion-textarea>
+            </ion-item>
+        </ion-list>
+        <ion-toolbar>
+            <ion-button type="submit" slot="primary">Store</ion-button>
+        </ion-toolbar>
+    </form>
+</div>
+
+<script>
+    let currentModal = null;
+    const controller = document.querySelector('ion-modal-controller');
+    const button = document.querySelector('ion-button');
+    button.addEventListener('click', createModal);
+    function createModal() {
+        controller.create({
+        component: 'modal-content'
+        }).then(modal => {
+        modal.present();
+        currentModal = modal;
+        });
+    }
+    function dismissModal() {
+        if (currentModal) {
+            currentModal.dismiss().then(() => { currentModal = null; });
+        }
+    }
+</script>

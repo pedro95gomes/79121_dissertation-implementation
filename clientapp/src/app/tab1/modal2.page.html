@@ -1,0 +1,86 @@
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Generate ticket</ion-title>
+            <ion-buttons slot="end">
+                <ion-button (click)="dismiss()">Close</ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>Regular Ticket</ion-card-title>
+            </ion-card-header>
+            <form #buyForm="ngForm" (ngSubmit)="buy(buyForm.value, callback)">
+                <ion-list id="optionlistid">
+                        <ion-list-header>
+                            <ion-label>Transport</ion-label>
+                        </ion-list-header>
+                    <ion-select id="transportInfo" name="transportInfo" (ionChange)="onChange(($event))" [(ngModel)] = "transportInfo" okText="Okay" cancelText="Dismiss">
+                        <ion-select-option (onclick)="getPrice('Metro')" name="Metro" value="Metro">Metro</ion-select-option>
+                        <ion-select-option (onclick)="getPrice('Bus')" name="Bus" value="Bus">Bus</ion-select-option>
+                        <ion-select-option (onclick)="showItinerary('Uber')" name="Uber" value="Uber">Uber</ion-select-option>
+                    </ion-select>
+                    <form [hidden]=isUberPriceFormHidden #getUberPriceForm="ngForm" (ngSubmit)="getUberPrice(getUberPriceForm.value)">
+                        <ion-label [hidden]=isSourceHidden>Source: </ion-label><ion-input ngModel required [hidden]=isSourceHidden id="source" name="source" placeholder="Source"></ion-input>
+                        <ion-label [hidden]=isDestHidden>Destination: </ion-label><ion-input ngModel required [hidden]=isDestHidden id="destination" name="destination" placeholder="Destination"></ion-input>
+                        <ion-button [hidden]=isUberPriceHidden type="submit" [hidden]=isUberPriceHidden id="showUberPrice" name="showUberPrice">Show price</ion-button>
+                    </form>
+                    <ion-list>
+                        <ion-radio-group id="transportOption" name="transportOption" (ionChange)="onChangeOption(($event))" [(ngModel)] = "transportOption">
+                        </ion-radio-group>
+                    </ion-list>
+                </ion-list>
+                <ion-toolbar>
+                    <ion-button type="submit" slot="primary">Go</ion-button>
+                </ion-toolbar>
+            </form>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>Checkin / Checkout</ion-card-title>
+            </ion-card-header>
+            <form #buyFormCICO="ngForm" (ngSubmit)="buyCICO(buyFormCICO.value, callback)">
+                <ion-list id="optionlistid">
+                        <ion-list-header>
+                            <ion-label>Transport</ion-label>
+                        </ion-list-header>
+                    <ion-select id="transportInfoCICO" name="transportInfoCICO" (ionChange)="onChange(($event))" [(ngModel)] = "transportInfoCICO" okText="Okay" cancelText="Dismiss">
+                        <ion-select-option (onclick)="getPrice('Taxi')" name="Taxi" value="Taxi">Taxi</ion-select-option>
+                        <ion-select-option (onclick)="getPrice('Scooter')" name="Scooter" value="Scooter">Scooter</ion-select-option>
+                    </ion-select>
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h2>Service Provider ID:</h2>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-textarea id="transportOptionCICO" name="transportOptionCICO" [(ngModel)] = "transportOptionCICO"class="ion-text-right" placeholder="Paste Service Provider ID here..."></ion-textarea>
+                    </ion-item>
+                </ion-list>
+                <ion-toolbar>
+                    <ion-button type="submit" slot="primary">Go</ion-button>
+                </ion-toolbar>
+            </form>
+        </ion-card>
+    </ion-content>
+
+<script>
+    let currentModal = null;
+    const controller = document.querySelector('ion-modal-controller');
+    const button = document.querySelector('ion-button');
+    button.addEventListener('click', createModal);
+    function createModal() {
+        controller.create({
+        component: 'modal-content'
+        }).then(modal => {
+        modal.present();
+        currentModal = modal;
+        });
+    }
+    function dismissModal() {
+        if (currentModal) {
+            currentModal.dismiss().then(() => { currentModal = null; });
+        }
+    }
+</script>

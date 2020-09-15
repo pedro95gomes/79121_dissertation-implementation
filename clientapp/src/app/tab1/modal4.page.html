@@ -1,0 +1,43 @@
+<div class="inner-content">    
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Ticket</ion-title>
+            <ion-buttons slot="end">
+                <ion-button color="primary" (click)="use()">Use</ion-button>   
+                <ion-button (click)="dismiss()">Close</ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle id="cardsubtitle"></ion-card-subtitle>
+            <ion-card-title id="cardtitle"></ion-card-title>
+        </ion-card-header>
+        <ion-item>
+            <ion-label id="cardcost">Cost: </ion-label>
+            <ion-label id="cardexpires">Expires: </ion-label>
+        </ion-item>
+        <ion-card-content id="cardcontent">
+        </ion-card-content>
+    </ion-card>    
+</div>
+
+<script>
+    let currentModal = null;
+    const controller = document.querySelector('ion-modal-controller');
+    const button = document.querySelector('ion-button');
+    button.addEventListener('click', createModal);
+    function createModal() {
+        controller.create({
+        component: 'modal-content'
+        }).then(modal => {
+            modal.present();
+            currentModal = modal;
+        });
+    }
+    function dismissModal() {
+        if (currentModal) {
+            currentModal.dismiss().then(() => { currentModal = null; });
+        }
+    }
+</script>

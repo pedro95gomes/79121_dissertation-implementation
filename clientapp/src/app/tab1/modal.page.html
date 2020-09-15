@@ -1,0 +1,56 @@
+<div class="inner-content"> 
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Buy tokens</ion-title>
+            <ion-buttons slot="end">
+                <ion-button (click)="dismiss()">Close</ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+    <form #buyForm="ngForm" (ngSubmit)="buy(buyForm.value)">
+        <ion-list>
+            <ion-list>
+            <ion-list-header>
+                <ion-label>Payment Options</ion-label>
+            </ion-list-header>
+            <ion-select name="paymentInfo" [(ngModel)] = "paymentInfo" value="Visa" okText="Okay" cancelText="Dismiss">
+                <ion-select-option name="Visa" value="Visa">Visa</ion-select-option>
+                <ion-select-option name="Paypal" value="Paypal">Paypal</ion-select-option>
+            </ion-select>
+        </ion-list>      
+            <ion-item lines="none">
+                <ion-label>
+                    <h2>Amount:</h2>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-input name="value" class="ion-text-right" [(ngModel)] = "value"></ion-input>
+                <ion-label>
+                    <h2>&nbsp;&nbsp;Tokens</h2>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+        <ion-toolbar>
+            <ion-button type="submit" slot="primary">Buy</ion-button>
+        </ion-toolbar>
+    </form>
+</div>
+<script>
+    let currentModal = null;
+    const controller = document.querySelector('ion-modal-controller');
+    const button = document.querySelector('ion-button');
+    button.addEventListener('click', createModal);
+    function createModal() {
+        controller.create({
+        component: 'modal-content'
+        }).then(modal => {
+        modal.present();
+        currentModal = modal;
+        });
+    }
+    function dismissModal() {
+        if (currentModal) {
+            currentModal.dismiss().then(() => { currentModal = null; });
+        }
+    }
+</script>

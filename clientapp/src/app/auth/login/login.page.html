@@ -1,0 +1,38 @@
+<ion-content class="ion-padding">
+    <form #form="ngForm" (ngSubmit)="login(form)">
+      <ion-grid>
+          <ion-row class="ion-justify-content-center">
+           <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+            <div class="ion-text-center">
+              <h3>Login</h3>
+            </div>
+            <div class="ion-padding">
+              <ion-item>
+                <ion-input name="email" type="email" placeholder="User" ngModel required></ion-input>
+              </ion-item>
+              <ion-select id="type" name="type" [(ngModel)] = "type" okText="Okay" cancelText="Dismiss">
+                <ion-select-option name="Client" value="Client">Client</ion-select-option>
+                <ion-select-option name="Service" value="Service">Service Provider</ion-select-option>
+            </ion-select>
+              <ion-item>
+                <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+              </ion-item>
+            </div>
+            <div class="ion-padding">
+              <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Login</ion-button>
+            </div>
+            <div class="ion-text-center">
+                If you don't have an account, please <a routerLink='/register'>
+                  create</a> first!
+            </div>
+            <div class="ion-text-center">
+                If you are a Service Provider and want to register, please <a routerLink='/serviceregister'>
+                  do it </a> here!
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+
+  </ion-content>
+  

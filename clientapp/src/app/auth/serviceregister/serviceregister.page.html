@@ -1,0 +1,37 @@
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="register(form)">
+    <ion-grid>
+        <ion-row class="ion-justify-content-center">
+            <ion-col class="ion-align-self-center" Size-md="6" size-lg="5" size-xs="12">
+          <div class="ion-text-center">
+            <h3>Register your service!</h3>
+          </div>
+          <div class="ion-padding">
+            <ion-item>
+              <ion-input  name="name" type="text" placeholder="Name (e.g. Transportes Sul do Tejo)" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="short" type="text" placeholder="Short Name (e.g. TST)" ngModel required></ion-input>
+            </ion-item>
+            <ion-select id="type" name="type" [(ngModel)] = "type" okText="Okay" cancelText="Dismiss">
+                <ion-select-option name="Metro" value="Metro">Metro</ion-select-option>
+                <ion-select-option name="Bus" value="Bus">Bus</ion-select-option>
+                <ion-select-option name="Uber" value="Uber">Uber</ion-select-option>
+                <ion-select-option name="Taxi" value="Taxi">Taxi</ion-select-option>
+                <ion-select-option name="Scooter" value="Scooter">Scooter</ion-select-option>
+            </ion-select>
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="confirm" type="password" placeholder="Password again" ngModel required></ion-input>
+            </ion-item>
+          </div>
+          <div class="ion-padding">
+            <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
